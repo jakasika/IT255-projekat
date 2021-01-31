@@ -13,6 +13,15 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { AuthService } from "./shared/services/auth.service";
+import { HomeComponent } from './components/user/home/home.component';
+import { ProductsComponent } from './components/user/products/products.component';
+import { ShoppingCartComponent } from './components/user/shopping-cart/shopping-cart.component';
+import { CheckOutComponent } from './components/user/check-out/check-out.component';
+import { OrderSuccessComponent } from './components/user/order-success/order-success.component';
+import { MyOrdersComponent } from './components/user/my-orders/my-orders.component';
+import { AdminProductsComponent } from './components/admin/admin-products/admin-products.component';
+import { AdminOrdersComponent } from './components/admin/admin-orders/admin-orders.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -22,7 +31,15 @@ import { AuthService } from "./shared/services/auth.service";
     SignInComponent,
     SignUpComponent,
     ForgotPasswordComponent,
-    VerifyEmailComponent
+    VerifyEmailComponent,
+    HomeComponent,
+    ProductsComponent,
+    ShoppingCartComponent,
+    CheckOutComponent,
+    OrderSuccessComponent,
+    MyOrdersComponent,
+    AdminProductsComponent,
+    AdminOrdersComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +47,7 @@ import { AuthService } from "./shared/services/auth.service";
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    NgbModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
