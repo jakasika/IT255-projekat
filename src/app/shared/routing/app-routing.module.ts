@@ -19,6 +19,7 @@ import { OrderSuccessComponent } from 'src/app/components/user/order-success/ord
 import { AdminProductsComponent } from 'src/app/components/admin/admin-products/admin-products.component';
 import { AdminOrdersComponent } from 'src/app/components/admin/admin-orders/admin-orders.component';
 import { MyOrdersComponent } from 'src/app/components/user/my-orders/my-orders.component';
+import { AdminAuthGuard } from '../guard/admin-auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
@@ -27,14 +28,14 @@ const routes: Routes = [
   // { path: 'dashboard', component: DashboardComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'verify-email-address', component: VerifyEmailComponent },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'products', component: ProductsComponent },
-  { path: 'my/orders', component: MyOrdersComponent },
-  { path: 'shopping-cart', component: ShoppingCartComponent },
-  { path: 'check-out', component: CheckOutComponent },
-  { path: 'order-success', component: OrderSuccessComponent },
-  { path: 'admin/products', component: AdminProductsComponent },
-  { path: 'admin/orders', component: AdminOrdersComponent },
+  { path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard] },
+  { path: 'shopping-cart', component: ShoppingCartComponent, canActivate: [AuthGuard] },
+  { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard] },
+  { path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGuard] },
+  { path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGuard, AdminAuthGuard] },
+  { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuard, AdminAuthGuard] },
 ];
 
 @NgModule({

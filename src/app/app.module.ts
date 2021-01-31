@@ -22,6 +22,8 @@ import { MyOrdersComponent } from './components/user/my-orders/my-orders.compone
 import { AdminProductsComponent } from './components/admin/admin-products/admin-products.component';
 import { AdminOrdersComponent } from './components/admin/admin-orders/admin-orders.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserService } from './shared/services/user.service';
+import { AdminAuthGuard } from './shared/guard/admin-auth.guard';
 
 
 @NgModule({
@@ -49,7 +51,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AngularFirestoreModule,
     NgbModule
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService, 
+    UserService,
+    AdminAuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
