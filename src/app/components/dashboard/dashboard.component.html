@@ -55,8 +55,9 @@
   
     </div>
   </div> -->
+  <nav *ngIf="authService.userData$ | async as user" class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Ninth navbar example">
 
-    <nav *ngIf="authService.userData as user" class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Ninth navbar example">
+    <!-- <nav *ngIf="ser" class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Ninth navbar example"> -->
     <div class="container-xl">
       <a class="navbar-brand" routerLink="/home">IT255 PROJEKAT</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07XL" aria-controls="navbarsExample07XL" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,16 +76,16 @@
             <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown07XL" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
             <ul ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown07XL">
               <li><a class="dropdown-item" routerLink="/my/orders">My orders</a></li>
-              <li><a class="dropdown-item" routerLink="/admin/orders">Manage Orders</a></li>
-              <li><a class="dropdown-item" routerLink="/admin/products">Manage Products</a></li>
+                <li><a class="dropdown-item" routerLink="/admin/orders">Manage Orders</a></li>
+                <li><a class="dropdown-item" routerLink="/admin/products">Manage Products</a></li>
             </ul>
-          </li>
+          </li> 
           <!-- <li class="nav-item">
               <a class="nav-link"style="color: aliceblue;">Hello: <strong>{{(user.displayName) ? user.displayName : 'User, ' }}</strong></a>
           </li> -->
           <!-- <div class="row"> -->
             <li class="nav-item">
-              <a class="nav-link" style="color: aliceblue;">Hello:  <strong>{{user.email}}</strong></a>
+              <a class="nav-link" style="color: aliceblue;">Hello:  <strong>{{ user.email}}</strong></a>
             </li>
             <li class="nav-item active">
               <a class="nav-link" (click)="authService.SignOut()">Log out</a>

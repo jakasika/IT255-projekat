@@ -5,15 +5,18 @@ import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router } from "@angular/router";
 import { UserService } from './user.service';
+import { Observable, pipe } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AuthService {
-  userData: any; // Save logged in user data
+  userData$: Observable<firebase.User>; // Save logged in user data
 
-  constructor(
+   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,   
@@ -25,9 +28,8 @@ export class AuthService {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         userService.save(user);
-
-        this.userData = user;
-        localStorage.setItem('user', JSON.stringify(this.userData));
+        this.userData$ = afAuth.authState;
+        localStorage.setItem('user', JSON.stringify(user));
         JSON.parse(localStorage.getItem('user'));
       } else {
         localStorage.setItem('user', null);
@@ -35,6 +37,20 @@ export class AuthService {
       }
     })
   }
+  
+  getCircularReplacer = () => {
+    const seen = new WeakSet();
+    return (key, value) => {
+      if (typeof value === "object" && value !== null) {
+        if (seen.has(value)) {
+          return;
+        }
+        seen.add(value);
+      }
+      return value;
+    };
+  };
+  
 
   // Sign in with email/password
   SignIn(email, password) {
@@ -60,6 +76,8 @@ export class AuthService {
         up and returns promise */
         this.SendVerificationMail();
         this.SetUserData(result.user);
+        this.userService.save(result.user);
+
       }).catch((error) => {
         window.alert(error.message)
       })
