@@ -20,6 +20,10 @@ import { AdminProductsComponent } from 'src/app/components/admin/admin-products/
 import { AdminOrdersComponent } from 'src/app/components/admin/admin-orders/admin-orders.component';
 import { MyOrdersComponent } from 'src/app/components/user/my-orders/my-orders.component';
 import { AdminAuthGuard } from '../guard/admin-auth.guard';
+import { ProductFormComponent } from 'src/app/admin/product-form/product-form.component';
+import { AddStudentComponent } from 'src/app/add-student/add-student.component';
+import { EditStudentComponent } from 'src/app/edit-student/edit-student.component';
+import { StudentListComponent } from 'src/app/student-list/student-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
@@ -36,6 +40,13 @@ const routes: Routes = [
   { path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGuard] },
   { path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGuard, AdminAuthGuard] },
   { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuard, AdminAuthGuard] },
+  { path: 'admin/products/new', component: ProductFormComponent, canActivate: [AuthGuard, AdminAuthGuard] },
+
+  // { path: '', redirectTo: '/register-student', pathMatch: 'full' },
+  { path: 'register-student', component: AddStudentComponent, canActivate: [AuthGuard] },
+  { path: 'view-students', component: StudentListComponent, canActivate: [AuthGuard] },
+  { path: 'edit-student/:id', component: EditStudentComponent, canActivate: [AuthGuard] }
+
 ];
 
 @NgModule({

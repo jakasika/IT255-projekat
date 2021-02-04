@@ -1,0 +1,7 @@
+input {
+    max-width: 30%;
+    padding-left: 100px;
+}
+select {
+    max-width: 30%;
+}

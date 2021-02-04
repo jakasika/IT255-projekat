@@ -24,6 +24,17 @@ import { AdminOrdersComponent } from './components/admin/admin-orders/admin-orde
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from './shared/services/user.service';
 import { AdminAuthGuard } from './shared/guard/admin-auth.guard';
+import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { CategoryService } from './category.service';
+import { AddStudentComponent } from './add-student/add-student.component';
+import { EditStudentComponent } from './edit-student/edit-student.component';
+import { StudentListComponent } from './student-list/student-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { ReactiveFormsModule } from '@angular/forms';
+// import { NgxPaginationModule } from 'ngx-pagination/dist/ngx-pagination.module';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 
 
 @NgModule({
@@ -41,7 +52,11 @@ import { AdminAuthGuard } from './shared/guard/admin-auth.guard';
     OrderSuccessComponent,
     MyOrdersComponent,
     AdminProductsComponent,
-    AdminOrdersComponent
+    AdminOrdersComponent,
+    ProductFormComponent,
+    AddStudentComponent,
+    EditStudentComponent,
+    StudentListComponent
   ],
   imports: [
     BrowserModule,
@@ -49,13 +64,20 @@ import { AdminAuthGuard } from './shared/guard/admin-auth.guard';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    NgbModule
+    NgbModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    ReactiveFormsModule,
+    NgxPaginationModule
+
   ],
   providers: [
     AuthService, 
     UserService,
-    AdminAuthGuard
+    AdminAuthGuard,
+    CategoryService
   ],
   bootstrap: [AppComponent]
+
 })
 export class AppModule { }
